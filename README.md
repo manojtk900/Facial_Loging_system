@@ -32,4 +32,19 @@ This system uses face recognition + blink detection (liveness check) to authenti
 ---
 
 ## 📂 Project Structure
-
+Facial_Recognition_System/
+│
+├── dataset/
+│ ├── person_name/
+│ ├── image1.jpg
+│ ├── image2.jpg
+│
+├── templates/
+│ └── blink_login.html
+│
+├── app.py
+├── train_model.py
+├── face_model.yml
+├── haarcascade_frontalface_default.xml
+├── haarcascade_eye.xml
+└── README.md
