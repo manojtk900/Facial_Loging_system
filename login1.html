@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facial Login</title>
+    <script>
+        setInterval(function(){
+            fetch('/check_login')
+            .then(response => {
+                if(response.redirected){
+                    window.location.href = response.url;
+                }
+            });
+        }, 1000);
+    </script>
+</head>
+<body style="text-align:center;">
+    <h1>Facial Login System</h1>
+    <img src="{{ url_for('video') }}" width="720">
+</body>
+</html>
