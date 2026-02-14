@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biometric Authentication</title>
+
+    <script>
+        let progress = 0;
+
+        setInterval(function(){
+            if(progress < 100){
+                progress += 5;
+                document.getElementById("progress").innerText = progress + "%";
+            }
+        }, 200);
+
+        setInterval(function(){
+            fetch('/status')
+            .then(response => response.text())
+            .then(user => {
+                if(user){
+                    document.getElementById("successSound").play();
+                    document.body.innerHTML = `
+                        <div class="success-screen">
+                            <div class="tick">✔</div>
+                            <h1>Welcome ${user}</h1>
+                            <p>Authentication Successful</p>
+                        </div>
+                    `;
+                }
+            });
+        }, 1000);
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            text-align: center;
+        }
+
+        .header {
+            background: #0d47a1;
+            color: white;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .circle-wrapper {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .camera-circle {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid red;
+            position: relative;
+        }
+
+        .camera-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 0, 0.7);
+            animation: scan 2s infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            50% { top: 95%; }
+            100% { top: 0; }
+        }
+
+        .loading {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .success-screen {
+            margin-top: 150px;
+        }
+
+        .tick {
+            font-size: 80px;
+            color: green;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        🇮🇳 National Biometric Authentication Portal
+    </div>
+
+    <div class="subtitle">
+        Please Blink to Capture
+    </div>
+
+    <div class="circle-wrapper">
+        <div class="camera-circle">
+            <img src="{{ url_for('video') }}">
+            <div class="scan-line"></div>
+        </div>
+    </div>
+
+    <div class="loading">
+        Scanning... <span id="progress">0%</span>
+    </div>
+
+    <audio id="successSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3" type="audio/mpeg">
+    </audio>
+
+</body>
+</html>
