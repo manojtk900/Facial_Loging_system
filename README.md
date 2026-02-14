@@ -74,3 +74,71 @@ Facial_Recognition_System/
 ```bash
 git clone https://github.com/your-username/Facial-Recognition-System.git
 cd Facial-Recognition-System
+
+
+2️⃣ Create Virtual Environment
+python -m venv venv
+.\venv\Scripts\activate
+
+3️⃣ Install Dependencies
+pip install opencv-contrib-python flask numpy
+
+4️⃣ Prepare Dataset
+
+Create structure:
+
+dataset/
+   ├── YourName/
+        ├── img1.jpg
+        ├── img2.jpg
+
+
+Use clear front-facing images.
+
+5️⃣ Train Model
+python train_model.py
+
+
+This generates:
+
+face_model.yml
+
+6️⃣ Run Application
+python app.py
+
+
+Open browser:
+
+http://127.0.0.1:5000
+
+🔒 Security Model
+
+This system includes a basic liveness detection mechanism:
+
+Eye detection verifies blink pattern.
+
+Prevents simple photo spoof attacks.
+
+Requires real user presence.
+
+⚠ Note: This is basic Haar-based liveness detection and not production-grade biometric security.
+
+🎯 Future Improvements
+
+MediaPipe-based accurate blink detection
+
+Anti-spoofing using depth analysis
+
+Database integration
+
+Multi-user role system
+
+Cloud deployment
+
+JWT session authentication
+
+👨‍💻 Author
+
+Manoj TK
+AI & Machine Learning Enthusiast 🚀
+Real-Time Computer Vision Developer
