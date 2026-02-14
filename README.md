@@ -48,3 +48,29 @@ Facial_Recognition_System/
 ├── haarcascade_frontalface_default.xml
 ├── haarcascade_eye.xml
 └── README.md
+
+---
+
+## 🧠 How It Works
+
+1. The system loads training images from the `dataset` folder.
+2. Faces are detected using Haarcascade.
+3. The LBPH model predicts identity.
+4. Eye detection monitors blink pattern.
+5. Authentication only succeeds when:
+   - Face is recognized
+   - Blink sequence is detected (Open → Closed → Open)
+6. On success:
+   - Camera stops
+   - Success sound plays
+   - Welcome message appears
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/your-username/Facial-Recognition-System.git
+cd Facial-Recognition-System
